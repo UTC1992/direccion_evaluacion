@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <!-- Stylesheets -->
+    @Styles.Render("~/Content/font-awesome/css/font-awesome.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/bootstrap-theme.min.css")
+    <!--datatable start-->
+    @Styles.Render("~/Content/dataTables.bootstrap.css")
+    @Styles.Render("~/Content/buttons.bootstrap.css")
+    <!-- Style Css-->
+    @Styles.Render("~/Content/fileinput.css")
+    @Styles.Render("~/Content/switcher.css")
+    @Styles.Render("~/Content/main.css")
+    @Styles.Render("~/Content/blue.css")
+    @Styles.Render("~/Content/responsive.css")
+    @Styles.Render("~/Content/sweetalert.css")
+
+    @Scripts.Render("~/Scripts/jquery-2.2.3.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+
+    <!--notify-->
+    @Scripts.Render("~/Scripts/notify/notify.min.js")
+    <!--datatable-->
+    @Scripts.Render("~/Scripts/DataTables/JSZip-2.5.0/jszip.js")
+    @Scripts.Render("~/Scripts/DataTables/pdfmake-0.1.18/build/pdfmake.js")
+    @Scripts.Render("~/Scripts/DataTables/pdfmake-0.1.18/build/vfs_fonts.js")
+    @Scripts.Render("~/Scripts/DataTables/DataTables-1.10.13/js/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/DataTables-1.10.13/js/dataTables.bootstrap.js")
+    @Scripts.Render("~/Scripts/DataTables/Buttons-1.2.4/js/dataTables.buttons.js")
+    @Scripts.Render("~/Scripts/DataTables/Buttons-1.2.4/js/buttons.bootstrap.js")
+    @Scripts.Render("~/Scripts/DataTables/Buttons-1.2.4/js/buttons.colVis.js")
+    @Scripts.Render("~/Scripts/DataTables/Buttons-1.2.4/js/buttons.html5.js")
+    @Scripts.Render("~/Scripts/DataTables/Scroller-1.4.2/js/dataTables.scroller.js")
+    @Scripts.Render("~/Scripts/DataTables/Select-1.2.0/js/dataTables.select.js")
+
+    <!--  bootstrap min js-->
+    @Scripts.Render("~/Scripts/fileinput.js")
+    @Scripts.Render("~/Scripts/es.js")
+
+    @Scripts.Render("~/Scripts/sweetalert.min.js")
+    @Scripts.Render("~/Scripts/sweetalert.js")
+    
+    <!-- fileinput -->
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+    @Scripts.Render("~/Scripts/nuevasValidaciones.js")
+    @Scripts.Render("~/Scripts/eModal.min.js")
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="overflow: visible;">
+
+    <div class="">
+        @RenderBody()
+        <hr />
+        <footer>
+            <!--  -->
+            <section id="karbar-footer-section">
+
+                <div class="bottom">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="subscribe-content">
+                                <!-- Newsletter title -->
+                                <div class="subscribe-content-inner">
+                                    <h2>DIRECCIÓN DE EVALUACIÓN Y ASEGURAMIENTO </h2>
+
+                                </div>
+                            </div>
+
+                            <div class="socials">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
+                            </div>
+                            <div class="copyright">
+                                <p class="copyright">© 2017 All rights reserved UTC/Facultad "Sistemas"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end Gmap ContactForm -->
+            <!-- =========================
+            Color Switcher
+            ============================== -->
+            <div id="custumize-style">
+                <a href="#" class="switcher open"> <span class="icon-switcher"><i class="fa fa-cogs"></i></span></a>
+                <div>
+                    <h3 class="color-option-title">Colors</h3>
+                    <ul class="colors-style" id="custom-color">
+                        <li>
+                            <a href="#" class="blue"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="yellow"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="red"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="green"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="purple"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="pink"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Color Switcher -->
+        </footer>
+    </div>
+
+    <!-- super slider -->
+    @Scripts.Render("~/Scripts/js/jquery.superslides.min.js")
+    <!-- contact js -->
+    @Scripts.Render("~/Scripts/js/jquery-contact.js")
+    <!-- retina js -->
+    @Scripts.Render("~/Scripts/js/retina.min.js")
+    <!-- mailchimp -->
+    @Scripts.Render("~/Scripts/js/jquery.ajaxchimp.min.js")
+    <!-- scroll animatin JS -->
+    @Scripts.Render("~/Scripts/js/scrollreveal.min.js")
+    @Scripts.Render("~/Scripts/js/main.js")
+
+    <!-- color js -->
+    @Scripts.Render("~/Scripts/switcher/switcher.js")
+
+
+    <!--@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap") -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>
