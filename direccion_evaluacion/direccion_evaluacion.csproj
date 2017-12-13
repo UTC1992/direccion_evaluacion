@@ -221,6 +221,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min2.js" />
+    <Content Include="images\archivos\ayudaCo\ayudaCo.pdf" />
+    <Content Include="images\archivos\ayudaUsu\ayudaUsu.pdf" />
+    <Content Include="images\archivos\ficha1\84f32482955ab35de44afa871e2761dd.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\datatables.css" />
     <Content Include="Scripts\DataTables\datatables.js" />
@@ -284,7 +287,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\font-awesome\" />
-    <Folder Include="images\archivos\" />
+    <Folder Include="images\archivos\ficha2\" />
+    <Folder Include="images\archivos\ficha3\" />
     <Folder Include="images\slider\" />
     <Folder Include="Scripts\DataTables\Buttons-1.2.4\" />
     <Folder Include="Scripts\DataTables\ColReorder-1.3.2\" />
