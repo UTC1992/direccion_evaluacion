@@ -56,9 +56,101 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50" style="overflow: visible;">
+    <!-- =========================
+        page header START
+    ============================== -->
+    <style type="text/css">
+        .brand-logo1 img {
+            left: 70px;
+            position: absolute;
+        }
+    </style>
+    <header>
+        <!--Nav Menu Starts-->
+        <nav class="navbar default nav-mob">
+            <div class="container mob-logo">
+                <div class="navbar-header col-sm-2 tablet-logo">
+                    <button type="button" class="navbar-toggle mob-menu" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#slides" class="brand-logo">
+                        <img src="/images/logo1.png" width="80" height="60" alt="karbar logo" />
+                    </a>
+                    <a href="#slides" class="brand-logo1">
+                        <img src="/images/logo2.png" width="80" height="60" alt="karbar logo" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav pull-right">
+                        <li id="inicio">
+                            <a href="/Home">Inicio</a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/Login">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <script type="text/javascript">
+
+      function verayudaCoor12(){
+            eModal.iframe("/images/archivos/ayudaCo/ayudaCo.pdf");
+      }
+
+      function verayudaUsu12(){
+            eModal.iframe("/images/archivos/ayudaUsu/ayudaUsu.pdf");
+      }
+    </script>
+
+    <style type="text/css">
+        .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+            background-color: #2e6da4;
+            border-color: #337ab7;
+        }
+
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 14px;
+            text-align: left;
+            list-style: none;
+            background-color: #2e6da4;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+    </style>
+
+    <!-- end header -->
 
     <div class="">
-        @RenderBody()
+        <!--CUERPO DE LA PAGINA-->
+
+            @RenderBody()
+
+        <!--CUERPO DE LA PAGINA-->
         <hr />
         <footer>
             <!--  -->
