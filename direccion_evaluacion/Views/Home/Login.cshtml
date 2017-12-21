@@ -22,14 +22,14 @@
             Ingresar al sistema
         </div>
         <div class="panel-body">
-
+            <!--Aqui se muestra un mensaje si el email o el password es incorrecto-->
             @if (ViewBag.Mostrar == "1")
             {
                 <div class="alert alert-danger">
                     <i class="fa fa-times"> </i> <b>Usuario o contraseña incorrectos, intente nuevamente</b>
                 </div>
             }
-            
+
             <form id="loginform" method="post" action="/login/validarIdentificacion" class="form-horizontal">
 
                 <div class="form-group">

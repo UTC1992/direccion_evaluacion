@@ -43,7 +43,7 @@ namespace direccion_evaluacion.Controllers
             }
             else
             {
-                return Redirect("/Home/Login/"+1);
+                return Redirect("/Home/Login?dato=1");
             }
 
         }
