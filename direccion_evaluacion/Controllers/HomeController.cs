@@ -20,8 +20,9 @@ namespace direccion_evaluacion.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string dato = null)
         {
+            ViewBag.Mostrar = dato;
             return View();
         }
     }

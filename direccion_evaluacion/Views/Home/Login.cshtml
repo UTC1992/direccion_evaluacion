@@ -23,25 +23,14 @@
         </div>
         <div class="panel-body">
 
-            <div class="alert alert-info">
-
-                <i class="fa fa-times"> </i> <b>o intente nuevamente</b>
-
-            </div>
-
-            <div class="alert alert-danger">
-
-                <i class="fa fa-times"> </i> <b>intente nuevamente</b>
-
-            </div>
-
-            <div class="alert alert-success">
-
-                <i class="fa fa-check"> </i> <b> ---------- </b>
-
-            </div>
-
-            <form id="loginform" method="post" action="/usuarios/validarIdentificacion" class="form-horizontal">
+            @if (ViewBag.Mostrar == "1")
+            {
+                <div class="alert alert-danger">
+                    <i class="fa fa-times"> </i> <b>Usuario o contraseña incorrectos, intente nuevamente</b>
+                </div>
+            }
+            
+            <form id="loginform" method="post" action="/login/validarIdentificacion" class="form-horizontal">
 
                 <div class="form-group">
                     <label for="email_use" class="col-sm-2 control-label">Email</label>
