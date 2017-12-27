@@ -83,6 +83,5 @@ c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direcci
 c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\bin\es\Microsoft.Owin.Security.Google.resources.dll
 c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\obj\Debug\direccion_evaluacion.csprojResolveAssemblyReference.cache
 c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\obj\Debug\direccion_evaluacion.dll
 c:\users\omar\documents\visual studio 2015\Projects\direccion_evaluacion\direccion_evaluacion\obj\Debug\direccion_evaluacion.pdb

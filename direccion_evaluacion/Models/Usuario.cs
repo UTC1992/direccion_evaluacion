@@ -17,7 +17,7 @@ namespace direccion_evaluacion.Models
         public string direccion { get; set; }
         public string password { get; set; }
         public string estado { get; set; }
-        public string perfil { get; set; }
+        public Perfil Perfil { get; set; }
     }
     
 }

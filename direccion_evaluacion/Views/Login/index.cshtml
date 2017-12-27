@@ -22,16 +22,9 @@
             Ingresar al sistema
         </div>
         <div class="panel-body">
-            <!--Aqui se muestra un mensaje si el email o el password es incorrecto-->
-            @if (ViewBag.Mostrar == "1")
-            {
-                <div class="alert alert-danger">
-                    <i class="fa fa-times"> </i> <b>Usuario o contraseña incorrectos, intente nuevamente</b>
-                </div>
-            }
 
-            <form id="loginform" method="post" action="/login/validarIdentificacion" class="form-horizontal">
-
+            <form id="loginform" method="post" action="/Login/verificarIdentificacion" class="form-horizontal">
+                
                 <div class="form-group">
                     <label for="email_use" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
@@ -54,10 +47,9 @@
 
                     </div>
                 </div>
-
             </form>
-        </div>
 
+        </div>
     </div>
 
 </div>

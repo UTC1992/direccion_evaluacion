@@ -15,5 +15,6 @@ namespace direccion_evaluacion.Models
 
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Perfil> Perfiles { get; set; }
     }
 }
