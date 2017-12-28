@@ -9,8 +9,11 @@ namespace direccion_evaluacion.Controllers
     
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        public ActionResult Index(string email = "", string usuario = "")
         {
+            ViewBag.email = Session["email"];
+            ViewBag.usuario = Session["usuario"];
             return View();
         }
         

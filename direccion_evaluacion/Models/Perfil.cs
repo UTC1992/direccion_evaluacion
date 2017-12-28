@@ -10,5 +10,6 @@ namespace direccion_evaluacion.Models
         public int id { get; set; }
         public string nombre { get; set; }
         public List<Usuario> Usuarios { get; set; }
+
     }
 }

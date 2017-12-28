@@ -88,16 +88,22 @@
                             <a href="/Home">Inicio</a>
                         </li>
 
-                        <li>
-                            <a href="/Login/Index">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
-                            </a>
-                        </li>
+                        @if (ViewBag.email != null)
+                        {
                         <li>
                             <a href="/Login/Salir">
                                 <i class="fa fa-sign-in" aria-hidden="true"></i> Cerrar Sesión
                             </a>
                         </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="/Login/Index">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

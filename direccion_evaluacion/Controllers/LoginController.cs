@@ -19,7 +19,7 @@ namespace direccion_evaluacion.Controllers
         {
             if(Session["email"] != null)
             {
-                return RedirectToAction("Index", "Home", new { email = Session["email"].ToString() });
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -37,13 +37,19 @@ namespace direccion_evaluacion.Controllers
         [HttpPost]
         public ActionResult verificarIdentificacion(string email_use, string password_use)
          {
-
+            //consulta de datos del usuario y del perfil a traves del atributo perfil
+            var usuario = db.Usuarios.FirstOrDefault(x => x.email == email_use && x.password == password_use);
+            var nombrePerfil = usuario.Perfil.nombre;
+            
+            //verificacion de la existencia de los datos ingresados en el login
             var userLogin = db.Usuarios.SingleOrDefault(x => x.email == email_use && x.password == password_use);
-            if(userLogin != null)
+
+            if (userLogin != null)
             {
+                Session["usuario"] = nombrePerfil;
                 Session["email"] = email_use;
 
-                return RedirectToAction("Index", "Home", new { email = email_use });
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -86,17 +92,11 @@ namespace direccion_evaluacion.Controllers
 
         }
 
+        //cerrar sesion
         public ActionResult Salir()
         {
-            if (Session["email"] != null)
-            {
-                Session.Remove("email");
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Home");
         }
 
     }
