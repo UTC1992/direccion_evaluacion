@@ -46,6 +46,7 @@ namespace direccion_evaluacion.Controllers
 
             if (userLogin != null)
             {
+                Session["Id"] = usuario.id;
                 Session["usuario"] = nombrePerfil;
                 Session["email"] = email_use;
 

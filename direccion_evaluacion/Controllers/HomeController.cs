@@ -14,6 +14,7 @@ namespace direccion_evaluacion.Controllers
         {
             ViewBag.email = Session["email"];
             ViewBag.usuario = Session["usuario"];
+            ViewBag.Id = Session["Id"];
             return View();
         }
         

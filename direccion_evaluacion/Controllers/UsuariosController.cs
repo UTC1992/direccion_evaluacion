@@ -9,8 +9,8 @@ namespace direccion_evaluacion.Controllers
 {
     public class UsuariosController : Controller
     {
+        EvaluacionDBContext db = new EvaluacionDBContext();
         
-
         // GET: Usuarios
         public ActionResult Index()
         {
@@ -45,10 +45,11 @@ namespace direccion_evaluacion.Controllers
             }
         }
 
-        // GET: Usuarios/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Usuarios/Perfil/5
+        public ActionResult Perfil(int id)
         {
-            return View();
+            Usuario usu = db.Usuarios.Find(id);
+            return View(usu);
         }
 
         // POST: Usuarios/Edit/5
