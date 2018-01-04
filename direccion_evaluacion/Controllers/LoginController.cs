@@ -38,23 +38,27 @@ namespace direccion_evaluacion.Controllers
         public ActionResult verificarIdentificacion(string email_use, string password_use)
          {
             //consulta de datos del usuario y del perfil a traves del atributo perfil
-            var usuario = db.Usuarios.FirstOrDefault(x => x.email == email_use && x.password == password_use);
-            var nombrePerfil = usuario.Perfil.nombre;
+            //var usuario = db.Usuarios.FirstOrDefault(x => x.email == email_use && x.password == password_use);
             
             //verificacion de la existencia de los datos ingresados en el login
             var userLogin = db.Usuarios.SingleOrDefault(x => x.email == email_use && x.password == password_use);
-
+            
             if (userLogin != null)
             {
-                Session["Id"] = usuario.id;
-                Session["usuario"] = nombrePerfil;
+                Session["Id"] = userLogin.id;
+                Session["usuario"] = userLogin.Perfil.nombre;
+                Session["nombre"] = userLogin.nombre;
+                Session["apellido"] = userLogin.apellido;
                 Session["email"] = email_use;
+
+                //session con helper
+                SessionHelper.AddUserToSession(userLogin.id.ToString());
 
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                return Redirect("/Login/Index");
+                return RedirectToAction("Index", "Login");
             }
 
             

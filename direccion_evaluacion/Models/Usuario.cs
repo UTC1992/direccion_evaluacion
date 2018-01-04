@@ -18,6 +18,8 @@ namespace direccion_evaluacion.Models
         public string password { get; set; }
         public string estado { get; set; }
         public virtual Perfil Perfil { get; set; }
+
     }
+
     
 }

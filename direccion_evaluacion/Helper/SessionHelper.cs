@@ -36,7 +36,7 @@ namespace direccion_evaluacion.Helper
         {
 
             bool persist = true;
-            var cookie = FormsAuthentication.GetAuthCookie("admin", persist);
+            var cookie = FormsAuthentication.GetAuthCookie("Administrador", persist);
 
             cookie.Name = FormsAuthentication.FormsCookieName;
             cookie.Expires = DateTime.Now.AddMonths(3);

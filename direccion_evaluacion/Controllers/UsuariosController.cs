@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using direccion_evaluacion.Models;
+using System.Data.Entity;
 
 namespace direccion_evaluacion.Controllers
 {
@@ -46,25 +47,105 @@ namespace direccion_evaluacion.Controllers
         }
 
         // GET: Usuarios/Perfil/5
-        public ActionResult Perfil(int id)
+        public ActionResult Perfil(int id = 0)
         {
-            Usuario usu = db.Usuarios.Find(id);
-            return View(usu);
+            ViewBag.email = Session["email"];
+            ViewBag.usuario = Session["usuario"];
+            ViewBag.Id = Session["Id"];
+            ViewBag.nombre = Session["nombre"];
+            ViewBag.apellido = Session["apellido"];
+
+            if (Session["usuario"] != null)
+            {
+                Usuario usu = db.Usuarios.Find(id);
+                return View(usu);
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
         }
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Perfil([Bind(Include = "id,nombre,apellido,cedula,email,telefono,direccion,password,estado")]
+                                    Usuario usuario, string tipoFormulario = "", int ID = 0,
+                                    string passant = "", string passnue = "", string passrep = "")
         {
+            db.Configuration.AutoDetectChangesEnabled = false;
+            db.Configuration.ValidateOnSaveEnabled = false;
+
             try
             {
-                // TODO: Add update logic here
+                switch(tipoFormulario)
+                {
+                    case "personales":
+                        if (ModelState.IsValid)
+                        {
+                            var usu = db.Entry(usuario);
+                            usu.State = EntityState.Modified;
+                            usu.Property(x => x.password).IsModified = false;
+                            usu.Property(x => x.estado).IsModified = false;
+                            db.SaveChanges();
+                            ViewBag.ActualizacionOK = true;
+                        }
+                        break;
 
-                return RedirectToAction("Index");
+                    case "password":
+
+                        var objeUsu = db.Usuarios.FirstOrDefault(x => x.id == ID);
+
+                        //&& passrep == usuario.password
+                        if (objeUsu.password == passant && passnue == passrep)
+                        {
+                            var usuarioEdit = db.Usuarios.Find(ID);
+                            usuarioEdit.password = passnue;
+                            db.Usuarios.Attach(usuarioEdit);
+                            db.Entry(usuarioEdit).Property(x => x.password).IsModified = true;
+                            db.SaveChanges();
+                            ViewBag.ActualizacionOK = true;
+                        }
+                        break;
+                }
+                
+                return Perfil(usuario.id);
             }
             catch
             {
-                return View();
+                ViewBag.Error = true;
+                return Perfil(usuario.id);
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult validarPasswordPorId(int id = 0, string passant = "")
+        {
+            var usuarioPass = db.Usuarios.Find(id);
+            if (usuarioPass.password == passant)
+            {
+                bool passExiste = true;
+                return Json(passExiste);
+            }else
+            {
+                bool passExiste = false;
+                return Json(passExiste);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult validarEmailPorId(int id = 0, string email = "")
+        {
+            var usuarioPass = db.Usuarios.Find(id);
+            if (usuarioPass.email == email)
+            {
+                bool passExiste = true;
+                return Json(passExiste);
+            }
+            else
+            {
+                bool passExiste = false;
+                return Json(passExiste);
             }
         }
 
