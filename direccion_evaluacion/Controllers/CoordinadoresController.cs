@@ -114,24 +114,29 @@ namespace direccion_evaluacion.Controllers
         }
 
         // GET: Coordinadores/Delete/5
-        public ActionResult Delete(int id)
+        /*public ActionResult Delete(int id)
         {
             return View();
         }
+        */
 
         // POST: Coordinadores/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        //[HttpPost]
+        public RedirectResult Delete(int id = 0)
         {
             try
             {
-                // TODO: Add delete logic here
+                Usuario usuario = db.Usuarios.Find(id);
+                db.Usuarios.Remove(usuario);
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                string mensaje = "Registro eliminado exitosamente. !";
+                return Redirect("/Coordinadores/Index?mensaje=" + mensaje);
             }
             catch
             {
-                return View();
+                string mensaje = "El registro no se elimino. !";
+                return Redirect("/Coordinadores/Index?mensaje=" + mensaje);
             }
         }
 
