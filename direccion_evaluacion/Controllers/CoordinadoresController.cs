@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using direccion_evaluacion.Models;
+using System.Data.Entity;
 
 namespace direccion_evaluacion.Controllers
 {
@@ -23,12 +24,6 @@ namespace direccion_evaluacion.Controllers
                                select Usuario;
 
             return View(usuariosList.ToList());
-        }
-
-        // GET: Coordinadores/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: Coordinadores/Create
@@ -77,20 +72,40 @@ namespace direccion_evaluacion.Controllers
         }
 
         // GET: Coordinadores/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
-            return View();
+            var usu = db.Usuarios.Find(id);
+            return View(usu);
         }
 
         // POST: Coordinadores/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar([Bind(Include = "id,nombre,apellido,cedula,email,telefono,direccion,password,estado")]
+                                    Usuario usuario, string estadoUsu = "", int ID = 0)
         {
             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var usu = db.Entry(usuario);
+                    usu.State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    //modificar estado
+                    var usuEstado = db.Usuarios.Find(usuario.id);
+                    if (estadoUsu == "on")
+                        usuEstado.estado = 1;
+                    else
+                        usuEstado.estado = 0;
+                    db.Usuarios.Attach(usuEstado);
+                    db.Entry(usuEstado).Property(x => x.estado).IsModified = true;
+                    db.SaveChanges();
+                }
+
+                string mensaje = "Registro actualizado exitosamente. !";
+
+                return Redirect("/Coordinadores/Index?mensaje=" + mensaje);
             }
             catch
             {
@@ -149,6 +164,22 @@ namespace direccion_evaluacion.Controllers
             {
                 bool usuExiste = false;
                 return Json(usuExiste);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult validarEmailPorId(int id = 0, string email = "")
+        {
+            var usuario = db.Usuarios.Find(id);
+            if (usuario.email == email)
+            {
+                bool existe = true;
+                return Json(existe);
+            }
+            else
+            {
+                bool existe = false;
+                return Json(existe);
             }
         }
     }
