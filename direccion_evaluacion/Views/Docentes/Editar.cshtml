@@ -1,31 +1,31 @@
 ﻿@model direccion_evaluacion.Models.Usuario
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script>
 
-  $('#coordinador').addClass('active');
+  $('#docentes').addClass('active');
 
 </script>
 <div class="row">
     <nav class="navbar-inverse">
 
         <center>
-            <h2> <i class="fa fa-user"> </i> <b>Editar de Coordinador</b></h2>
+            <h2> <i class="fa fa-user"> </i> <b>Editar de Docente</b></h2>
         </center>
 
     </nav>
 </div>
 <div class="container">
-    <h3>Editar de Coordinador</h3>
-    <a class="btn btn-info" href="/Coordinadores/Index"><i class="fa fa-mail-reply"></i></a>
+    <h3>Editar de Docente</h3>
+    <a class="btn btn-info" href="/Docentes/Index"><i class="fa fa-mail-reply"></i></a>
     <div class="panel panel-default">
 
         <div class="panel-body">
-            <form class="form-horizontal" method="post" id="form_Coor" action="/Coordinadores/Editar">
+            <form class="form-horizontal" method="post" id="form_Coor" action="/Docentes/Editar">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -147,7 +147,7 @@
                 required:true,
                 email: true,
                   remote:{
-                   url:'/Coordinadores/validarEmailPorId',
+                   url:'/Docentes/validarEmailPorId',
                    type:'post',
                    data:{
                       email: function(){

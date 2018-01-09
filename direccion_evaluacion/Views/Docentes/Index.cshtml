@@ -5,8 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <script>
-  $('#coordinador').addClass('active');
+  $('#docentes').addClass('active');
 </script>
 
 @if (ViewBag.AccionOk != "")
@@ -20,16 +21,19 @@
     <nav class="navbar-inverse">
 
         <center>
-            <h2> <i class="fa fa-user"> </i> <b>Administración de Coordinadores</b></h2>
+            <h2> <i class="fa fa-user"> </i> <b>Administración de Docentes </b></h2>
         </center>
 
     </nav>
 </div>
 <div class="container">
-    <h3>Administración de Coordinadores</h3>
+    <h3>Administración de Docentes</h3>
     <div class="panel panel-default">
-        <div class="panel-heading"> <a align="right" class="btn btn-primary" href="/Coordinadores/Create">
-            <i class="fa fa-list"> Nuevo Coordinador</i></a></div>
+        <div class="panel-heading">
+            <a align="right" class="btn btn-primary" href="/Docentes/Create">
+                <i class="fa fa-list"> Nuevo Docente</i>
+            </a>
+        </div>
         <div class="panel-body">
             <div class="table-responsive">
                 @if (Model != null)
@@ -45,6 +49,8 @@
                                 <th>Teléfono</th>
                                 <th>Dirección</th>
                                 <th>Estado</th>
+                                <th>Archivo</th>
+                                <th>Equivalencia</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -58,11 +64,14 @@
                                 <th>Teléfono</th>
                                 <th>Dirección</th>
                                 <th>Estado</th>
+                                <th>Archivo</th>
+                                <th>Equivalencia</th>
                                 <th>Opciones</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @{ 
+                            @{
+                                int docu = 1;
                                 int i = 0;
                             }
                             @foreach (var item in Model)
@@ -87,22 +96,54 @@
                                         }
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="/Coordinadores/Editar/@item.id"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-danger btn-circle eliminar" href="/Coordinadores/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Coordinador</b>" data-placement="bottom">
-                                        <i class="fa fa-trash-o"> </i></a>
+                                        <a class="btn btn-info" href="/Respuestas/subirInformacionRespuesta/@item.id/@docu"><i class="fa fa-list"></i>Asignar Ficha N° 1</a>
+                                    </td>
+                                    <td>
+                                        <center> <b class="calificacion" name="calificacion" id="calificacion-@item.id" ></b> </center>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="/Docentes/Editar/@item.id"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-danger btn-circle eliminar" href="/Docentes/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Docente</b>" data-placement="bottom">
+                                            <i class="fa fa-trash-o"> </i>
+                                        </a>
                                     </td>
                                 </tr>
+
+                                /*<script type="text/javascript">
+
+                                  var url1="/Docentes/generar";
+                                  var docu="@docu";
+
+                                     $.ajax({
+                                           url:url1,
+                                           type:'post',
+                                           data:{
+                                            idRes:'@item.id',
+                                            docu:docu
+                                          },
+                                          success:function(data){
+                                      var resultado=JSON.parse(data);
+
+                                         $("#calificacion-@item.id").html(resultado);
+
+                                          },
+                                          error:function(err){
+
+                                          }
+                                      });
+                                </script
+                                */
                             }
                         </tbody>
 
                     </table>
-                }
-                else
-                {
-                    <div class="alert alert-danger">
-                        <b>No se encontraton Directores</b>
-                    </div>
-                }
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <b>No se encontraton Directores</b>
+                        </div>
+                    }
 
             </div>
         </div>
@@ -134,7 +175,8 @@
                 //alert("Cancelled");
               }
             })
-          });
+      });
+
 $('.tabladireccion').DataTable( {
         dom: 'Bfrtip',
         buttons: [

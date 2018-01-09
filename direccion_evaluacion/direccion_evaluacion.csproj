@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CoordinadoresController.cs" />
+    <Compile Include="Controllers\DocentesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -223,6 +224,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min2.js" />
+    <Content Include="images\archivos\ficha1\84f32482955ab35de44afa871e2761dd.pdf" />
+    <Content Include="images\archivos\ayudaCo\ayudaCo.pdf" />
+    <Content Include="images\archivos\ayudaUsu\ayudaUsu.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\datatables.css" />
     <Content Include="Scripts\DataTables\datatables.js" />
@@ -268,11 +272,15 @@
     <Content Include="Views\Coordinadores\Index.cshtml" />
     <Content Include="Views\Coordinadores\Create.cshtml" />
     <Content Include="Views\Coordinadores\Editar.cshtml" />
+    <Content Include="Views\Docentes\Index.cshtml" />
+    <Content Include="Views\Docentes\Create.cshtml" />
+    <Content Include="Views\Docentes\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\font-awesome\" />
-    <Folder Include="images\archivos\" />
+    <Folder Include="images\archivos\ficha2\" />
+    <Folder Include="images\archivos\ficha3\" />
     <Folder Include="images\slider\" />
     <Folder Include="Scripts\DataTables\Buttons-1.2.4\" />
     <Folder Include="Scripts\DataTables\ColReorder-1.3.2\" />
@@ -290,7 +298,6 @@
     <Folder Include="Scripts\DataTables\Select-1.2.0\" />
     <Folder Include="Scripts\js\" />
     <Folder Include="Scripts\switcher\" />
-    <Folder Include="Views\Coordinador\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
