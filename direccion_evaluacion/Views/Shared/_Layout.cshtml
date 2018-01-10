@@ -162,6 +162,44 @@
                             </li>
                         }
 
+                        if (Session["usuario"].ToString() == "Docente")
+                        {
+                            <li id="listacoordinadores">
+                                <a href="/Docentes/Coordinadores">Subir Archivos</a>
+                            </li>
+
+                            <!-- datos del conectado -->
+                            <li class="dropdown" id="perfil">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <strong>@Session["nombre"].ToString() @Session["apellido"].ToString()</strong> <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- menu para cambiar datos del perfil -->
+                                    <li id="perfil1">
+                                        <a href="/Usuarios/Perfil/@Session["Id"].ToString()">
+                                            <i class="fa fa-user" aria-hidden="true">
+                                            </i><strong>Perfil</strong>
+                                        </a>
+                                    </li>
+                                    <!-- menu para salir -->
+                                    <li>
+                                        <a href="/Login/Salir">
+                                            <i class="fa fa-unlock-alt" aria-hidden="true">
+                                            </i><strong>Salir</strong>
+                                        </a>
+                                    </li>
+                                    <!--menu de ayuda para los corrdinadores-->
+                                    <li>
+                                        <a onclick="verayudaUsu12();">
+                                            <i class="fa fa-question" aria-hidden="true">
+                                            </i><strong> Ayuda</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
                     }
                     else
                     {

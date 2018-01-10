@@ -193,5 +193,19 @@ namespace direccion_evaluacion.Controllers
                 return Json(existe);
             }
         }
+
+        //mostrar coordinadores a los que se les envia las fichas asignadas
+        public ActionResult Coordinadores(string mensaje = "")
+        {
+
+            ViewBag.AccionOk = mensaje;
+
+            //consulta de usuarios con perfil de coordinador
+            var usuariosList = from Usuario in db.Usuarios
+                               where Usuario.Perfil.id == 2
+                               select Usuario;
+
+            return View(usuariosList.ToList());
+        }
     }
 }

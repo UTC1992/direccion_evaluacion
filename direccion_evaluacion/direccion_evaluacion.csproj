@@ -275,6 +275,7 @@
     <Content Include="Views\Docentes\Index.cshtml" />
     <Content Include="Views\Docentes\Create.cshtml" />
     <Content Include="Views\Docentes\Editar.cshtml" />
+    <Content Include="Views\Docentes\Coordinadores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

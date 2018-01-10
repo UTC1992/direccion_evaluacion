@@ -1,0 +1,162 @@
+﻿@model IEnumerable<direccion_evaluacion.Models.Usuario>
+
+@{
+    ViewBag.Title = "Subir Archivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+  $('#listacoordinadores').addClass('active');
+
+</script>
+
+@if (ViewBag.AccionOk != "")
+{
+    <script>
+      swal("Confirmación!", "@ViewBag.AccionOk", "success")
+    </script>
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Coordinador</b></h2>
+        </center>
+
+    </nav>
+</div>
+<br>
+<div class="container">
+    <h3>Coordinador </h3>
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                @if (Model != null)
+                {
+                <table class="table table-bordered table-hover tabladireccion">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+
+                            <th>Opciones</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        <!--Inicio de varibles paralos documentos -->
+                        @{
+                            int docu1 = 1;
+                            int docu2 = 2;
+                            int docu3 = 3;
+
+                            int i = 0;
+                        }
+                        
+                        <!--fin-->
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.apellido</td>
+                            <td>@item.nombre</td>
+
+                            <td>
+                                <a class="btn btn-primary" href="/Respuestas/subirArchivos/@item.id/@docu1"><i class="fa fa-upload"></i>Subir Ficha N°1</a>
+                                <a class="btn btn-success" href="/Respuestas/subirArchivos/@item.id/@docu2"><i class="fa fa-upload"></i>Subir Ficha N°2</a>
+                                <a class="btn btn-warning" href="/Respuestas/subirArchivos/@item.id/@docu3"><i class="fa fa-upload"></i>Subir Ficha N°3</a>
+
+                            </td>
+                        </tr>
+                        <!--
+                        <script type="text/javascript">
+
+                          var url1="<?php echo site_url('docentes/generar1')?>";
+                             $.ajax({
+                                   url:url1,
+                                   type:'post',
+                                   data:{
+                                    idRes:'<?php echo $cor->id ;?>'
+                                  },
+                                  success:function(data){
+                              var resultado=JSON.parse(data);
+
+                                 $("#calificacion1<?php echo $cor->id ;?>").html(resultado);
+
+                                  },
+                                  error:function(err){
+                                    alert('err');
+                                  }
+                              });
+
+
+                        </script>
+                        -->
+                        }
+                    </tbody>
+                    
+                </table>
+                } else {
+                     <div class="alert alert-danger">
+                        <b>No existen datos</b>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  $('.tabladireccion').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+        language:{
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+
+
+        "scrollCollapse": true,
+        "paging":         true
+    } );
+</script>
+
