@@ -1,0 +1,319 @@
+﻿@model direccion_evaluacion.Models.Usuario
+
+@{
+    ViewBag.Title = "Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+  $('#perfil').addClass('active');
+$('#perfil').addClass('dropdown-toggle');
+</script>
+   @if (ViewBag.ActualizacionOK != null)
+   {
+        <script>
+          $.notify("Perfil acualizado exitosamente..!", "success");
+        </script>
+   }
+    
+    @if (ViewBag.Error != null)
+    {
+        <script>
+          $.notify("Datos no actualizados..!", "warning");
+        </script>
+    }
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Mi Perfil</b></h2>
+        </center>
+
+    </nav>
+</div>
+<div class="container">
+    <div class="panel-heading">
+        <a class="btn btn-danger" href="/Home/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span> Regresar</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Datos del usuario</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Contraseña</a></li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+
+
+                    <form class="form-horizontal" method="post" id="form_Coor" action="/Usuarios/Perfil">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend></legend>
+
+                            <!-- Text input-->
+                            <input type="hidden" name="id" id="ID" value="@Model.id">
+                            <input type="hidden" name="tipoFormulario"  value="personales">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="nombre">Nombre</label>
+                                <div class="col-md-4">
+                                    <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md" value="@Model.nombre">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="apellido">Apellido</label>
+                                <div class="col-md-4">
+                                    <input id="apellido" name="apellido" type="text" placeholder="" class="form-control input-md" value="@Model.apellido">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="cedula">Cédula</label>
+                                <div class="col-md-4">
+                                    <input id="cedula" name="cedula" value="@Model.cedula" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="email">Email</label>
+                                <div class="col-md-4">
+                                    <input id="email" name="email" type="text" placeholder="" value="@Model.email" class="form-control input-md" readonly>
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="telefono">Teléfono</label>
+                                <div class="col-md-4">
+                                    <input id="telefono" name="telefono" value="@Model.telefono" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="direccion">Dirección</label>
+                                <div class="col-md-4">
+                                    <input id="direccion" name="direccion" value="@Model.direccion" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <!-- Button (Double) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="button1id"></label>
+                                <div class="col-md-8">
+                                    <button type="submit" name="button1id" class="btn btn-success">Guardar</button>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+
+                    <!-- Inicio para el formulario de cambio de contraseña-->
+                    <form class="form-horizontal" method="post" id="form_Nueva" action="/Usuarios/Perfil">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend></legend>
+
+                            <!-- Text input-->
+                            <input type="hidden" name="id" id="idPas" value="@Model.id">
+                            <input type="hidden" name="tipoFormulario" value="password">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="nombre">Ingrese la contraseña anterior</label>
+                                <div class="col-md-4">
+                                    <input id="passant" name="passant" type="password" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="apellido">Nueva contraseña</label>
+                                <div class="col-md-4">
+                                    <input id="passnue" name="passnue" type="password" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="cedula">Repita la nueva contraseña</label>
+                                <div class="col-md-4">
+                                    <input id="passrep" name="passrep" type="password" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <!-- Button (Double) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="button1id"></label>
+                                <div class="col-md-8">
+                                    <button type="submit" name="button1id" class="btn btn-success">Guardar</button>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <!-- Text input-->
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+ </div>
+<div>
+
+    <script type="text/javascript">
+  $('#form_Coor').validate({
+            rules:{
+                nombre:{
+                  required:true,
+                    minlength:2
+                },
+              apellido:{
+                required:true,
+                    minlength:2
+              },
+              cedula:{
+                required:true,
+                minlength:10,
+                maxlength:10
+
+              },
+              telefono:{
+                required:true,
+                digits:true,
+                positivo:true,
+                minlength:9,
+                maxlength:10
+
+              } ,
+              email:{
+                required:true,
+                email: true,
+                  remote:{
+                   url:'/Usuarios/validarEmailPorId',
+                   type:'post',
+                   data:{
+                      email: function(){
+                         return $('#email').val();
+                        },
+                        id: function(){
+                         return $('#ID').val();
+                        }
+                       }
+
+                  }
+
+              }
+            },
+            messages:{
+                 nombre:{
+                     required:"Ingrese los nombres",
+                    minlength:'Ingrese más de 2 letras'
+                },
+              apellido:{
+                  required:"Ingrese los apellidos ",
+                    minlength:'Ingrese más de 2 letras'
+              },
+              cedula:{
+                 required:"Ingrese la cédula ",
+                  cedula:'Cédula incorrecta',
+                  remote:"El número de la cédula ya existe",
+                  minlength:"Este campo acepta más de 9 dígitos",
+                  maxlength:"Este campo acepta mínimo de 10 dígitos"
+              },
+              telefono:{
+                  required:"Ingrese el número de teléfono ",
+                  digits:"Ingrese solo números",
+                  minlength:"Este campo acepta más de 9 dígitos",
+                  maxlength:"Este campo acepta mínimo de 10 dígitos"
+
+              },
+              email:{
+                  required:"Ingrese el Email",
+                  email:"El email ingresado es incorrecto",
+                  remote:"El correo ya existe"
+
+
+              }
+            }
+        });
+
+    $('#form_Nueva').validate({
+            rules:{
+              passant:{
+                required:true,
+                remote:{
+                   url:'/Usuarios/validarPasswordPorId',
+                   type:'post',
+                   data:{
+                      passant: function(){
+                         return $('#passant').val();
+                        },
+                        id: function(){
+                         return $('#idPas').val();
+                        }
+                       }
+
+                  }
+
+              } ,
+              passnue:{
+                required:true,
+                minlength:6,
+
+              } ,
+              passrep:{
+              	 equalTo: "#passnue",
+                required:true,
+                minlength:6,
+
+              }
+            },
+            messages:{
+
+              passant:{
+                 required:"Ingrese la contraseña anterior",
+                remote:"La contrasena no son iguales",
+
+              },
+              passnue:{
+                  required:"Ingrese la nueva contraseña",
+
+                  minlength:"Este campo acepta más de 6 dígitos",
+
+
+              } ,
+              passrep:{
+              	equalTo:"La contraseña no es igual a la nueva ingresada",
+                required:"Repita la contraseña",
+                minlength:"Este campo acepta más de 6 dígitos",
+
+              }
+            }
+        });
+
+
+    </script>
+

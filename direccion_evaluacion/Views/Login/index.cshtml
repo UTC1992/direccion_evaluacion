@@ -4,76 +4,70 @@
 
 <div class="row">
     <nav class="navbar-inverse">
-
-        <center>
-            <h2> <i class="fa fa-user"> </i> <b>Ingresar al sistema</b></h2>
-        </center>
+        <br />
+        <br />
 
     </nav>
 </div>
-
-<br>
-
 <div class="container">
+    <br />
+    <center>
+        <h2> <i class="fa fa-user"> </i> <b> Ingresar al sistema</b></h2>
+    </center>
+    <br>
+   
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Bienvenido ingrese sus datos 
+            </div>
+            <div class="panel-body">
+                <form id="loginform" method="post" action="/Login/verificarIdentificacion" class="form-horizontal">
 
-    <div class="panel panel-default">
-
-        <div class="panel-heading">
-            Ingresar al sistema
-        </div>
-        <div class="panel-body">
-
-            <form id="loginform" method="post" action="/Login/verificarIdentificacion" class="form-horizontal">
-                
-                <div class="form-group">
-                    <label for="email_use" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input id="email_use" type="text" class="form-control" name="email_use" placeholder="Ingrese Email" required="">
+                    <div class="form-group">
+                        <label for="email_use" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input id="email_use" type="text" class="form-control" name="email_use" placeholder="Ingrese Email" required="">
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password_use" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input id="login-password" type="password" class="form-control" name="password_use" placeholder="Ingrese password" required="">
+                    <div class="form-group">
+                        <label for="password_use" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input id="login-password" type="password" class="form-control" name="password_use" placeholder="Ingrese password" required="">
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-12 controls">
-                        <button id="btn-login" type="submit" class="btn btn-info btn-block btn-lg">
-                            Ingresar
-                        </button>
-
+                    <div class="form-group">
+                        <div class="col-sm-12 controls">
+                            <button id="btn-login" type="submit" class="btn btn-info btn-block btn-lg">
+                                Ingresar
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-
+                </form>
+            </div>
         </div>
     </div>
+    </div>
 
-</div>
-
-
-<script>
+    <script>
 
         $('#loginform').validate({
-            rules:{
-                email_use:{
-                    required:true
+            rules: {
+                email_use: {
+                    required: true
 
                 },
-              password_use:{
-                required:true
-              }
+                password_use: {
+                    required: true
+                }
             },
-            messages:{
-                 email_use:{
-                    required:"Ingrese email"
+            messages: {
+                email_use: {
+                    required: "Ingrese email"
                 },
-              password_use:{
-                  required:"Ingrese password"
-              }
+                password_use: {
+                    required: "Ingrese password"
+                }
             }
         });
-</script>
+    </script>

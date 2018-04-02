@@ -1,0 +1,73 @@
+﻿@model IEnumerable<direccion_evaluacion.Models.Subtitulo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Administración de Fichas</b></h2>
+        </center>
+
+    </nav>
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <div class="panel-heading">
+            <table class="table">
+                <tr>
+                    <td>
+                        <a align="right" class="btn btn-primary" href="/Subtitulos/Create">
+                            <i class="fa fa-list"> Nuevo Subtitulo</i>
+                        </a>
+                    </td>
+
+                    <td class="text-right">
+                        <a class="btn btn-danger" href="/Titulos/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span> Regresar</a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    <b>Subtitulo</b>
+                </th>
+                <th>
+                    <b>Titulo</b>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width: 400px;">
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td style="width: 400px;">
+                        @Html.DisplayFor(modelItem => item.Titulo.nombre)
+                    </td>
+                    <td>
+                        <center>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                            <!---@Html.ActionLink("Details", "Details", new { id = item.id })-->
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                        </center>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="panel-heading">
+            <a align="right" class="btn btn-success" href="/Items/Index">
+                <i class="fa fa-list"> Generar items para el subtitulo</i>
+            </a>
+        </div>
+    </div>
+</div>

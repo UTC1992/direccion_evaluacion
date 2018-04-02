@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "SubirArchivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Administrar Archivos</b></h2>
+        </center>
+    </nav>
+</div>
+
+<h2>Subir Archivo</h2>
+
+<div class="container">
+    <div class="table-responsive">
+        <div class="panel-heading">
+            <form method="post" enctype="multipart/form-data">
+
+                <input id="input-folder-1" type="file" name="file" class="form-control"/>
+                <input type="hidden" name="idItem" value="@ViewBag.IdItem" />
+                <input type="hidden" name="ficha" value="@ViewBag.ficha" />
+                <input type="hidden" name="rutaFile" value="@ViewBag.ruta" />
+                <!-- <input type="file" name="file" class="form-control" />-->
+                <br><br><br>
+                <center>
+                    <h3 class="text-danger">@ViewBag.Error</h3>
+                    <h3 class="text-info">@ViewBag.Correcto</h3>
+                    <br>
+                    <a align="right" class="btn btn-danger" style="width:400px;" href="/MostrarFichas/Ficha1Mod1?nombre=@ViewBag.ficha"> <span class="glyphicon glyphicon-circle-arrow-left"> </span> Regresar</a>
+                </center>
+            </form>
+
+            
+        </div>
+    </div>
+
+
+    </div>
+
+
+
+
+
+
+
+   
+
+<script>
+            $(document).on('ready', function() {
+                $("#input-folder-1").fileinput({
+             browseLabel: 'Selecccionar Archivo'
+          });
+        });
+</script>

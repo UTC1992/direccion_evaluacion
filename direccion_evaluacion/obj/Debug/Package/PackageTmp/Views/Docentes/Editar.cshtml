@@ -1,0 +1,200 @@
+﻿@model direccion_evaluacion.Models.Usuario
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+  $('#docentes').addClass('active');
+
+</script>
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Administrar Docente</b></h2>
+        </center>
+
+    </nav>
+</div>
+<div class="container">
+    <div class="panel-heading">
+        <a class="btn btn-danger" href="/Docentes/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span> Regresar</a>
+    </div>
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <form class="form-horizontal" method="post" id="form_Coor" action="/Docentes/Editar">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend></legend>
+
+                    <!-- Text input
+                    <input type="hidden" name="accion" id="accion" value="editar">
+                    -->
+                    <input type="hidden" name="ID" id="ID" value="@Model.id">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="nombre">Nombre</label>
+                        <div class="col-md-4">
+                            <input id="nombre" name="nombre" type="text" placeholder="" value="@Model.nombre" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="apellido">Apellido</label>
+                        <div class="col-md-4">
+                            <input id="apellido" name="apellido" type="text" placeholder="" value="@Model.apellido" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="cedula">Cédula</label>
+                        <div class="col-md-4">
+                            <input id="cedula" name="cedula" type="text" placeholder="" value="@Model.cedula" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">Email</label>
+                        <div class="col-md-4">
+                            <input id="email" name="email" type="text" placeholder="" value="@Model.email" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="telefono">Teléfono</label>
+                        <div class="col-md-4">
+                            <input id="telefono" name="telefono" type="text" placeholder="" value="@Model.telefono" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="direccion">Dirección</label>
+                        <div class="col-md-4">
+                            <input id="direccion" name="direccion" type="text" placeholder="" value="@Model.direccion" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="direccion">Password</label>
+                        <div class="col-md-4">
+                            <input id="password" name="password" type="password" placeholder="" value="@Model.password" class="form-control input-md">
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="estado">Estado</label>
+                        <div class="col-md-4">
+                            @if (Model.estado == 1)
+                            {
+                                <input name="estadoUsu" type="checkbox" checked="checked" placeholder="" class="form-control input-md">
+                            }
+                            else
+                            {
+                                <input name="estadoUsu" type="checkbox" placeholder="" class="form-control input-md">
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="button1id"></label>
+                        <div class="col-md-8">
+                            <button type="submit" name="button1id" class="btn btn-success">Guardar</button>
+                            <button id="" name="" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  $('#form_Coor').validate({
+            rules:{
+                nombre:{
+                  required:true,
+                    minlength:2
+                },
+              apellido:{
+                required:true,
+                    minlength:2
+              },
+              cedula:{
+                required:true,
+                minlength:10,
+                maxlength:10
+              } ,
+              telefono:{
+                required:true,
+                digits:true,
+                positivo:true,
+                minlength:9,
+                maxlength:10
+
+              } ,
+              email:{
+                required:true,
+                email: true,
+                  remote:{
+                   url:'/Docentes/validarEmailPorId',
+                   type:'post',
+                   data:{
+                      email: function(){
+                         return $('#email').val();
+                        },
+                        id: function(){
+                         return $('#ID').val();
+                        }
+                       }
+
+                  }
+
+              }
+            },
+            messages:{
+                 nombre:{
+                     required:"Ingrese los nombres del Coordinador",
+                    minlength:'Ingrese más de 2 letras'
+                },
+              apellido:{
+                  required:"Ingrese los apellidos del Coordinador",
+                    minlength:'Ingrese más de 2 letras'
+              },
+              cedula:{
+                 required:"Ingrese la cédula del Coordinador",
+                  cedula:'Cédula incorrecta',
+                  remote:"El número de la cédula ya existe",
+                  minlength:"Este campo acepta más de 9 dígitos",
+                  maxlength:"Este campo acepta mínimo de 10 dígitos"
+              },
+              telefono:{
+                  required:"Ingrese el número de teléfono del Coordinador",
+                  digits:"Ingrese solo números",
+                  minlength:"Este campo acepta más de 9 dígitos",
+                  maxlength:"Este campo acepta mínimo de 10 dígitos"
+
+              },
+              email:{
+                  required:"Ingrese el Email  del Coordinador",
+                  email:"El email ingresado es incorrecto",
+                  remote:"El correo ya existe"
+
+
+              }
+            }
+        });
+
+
+</script>

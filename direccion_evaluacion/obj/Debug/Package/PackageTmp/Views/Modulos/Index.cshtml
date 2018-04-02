@@ -1,0 +1,65 @@
+﻿@model IEnumerable<direccion_evaluacion.Models.Modulo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Administrar Módulos</b></h2>
+        </center>
+
+    </nav>
+</div>
+
+<br>
+<div class="container">
+    <div class="table-responsive">
+        <h2>Mis Módulos</h2>
+        <!-- <div class="">
+
+           <div class="">
+                <div class="panel-heading">
+                    <a align="right" class="btn btn-primary" href="/Modulos/Create">
+                        <i class="fa fa-list"> Nuevo Módulo</i>
+                    </a>
+                </div>
+            </div>-->
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <tr>
+
+                <th>
+                    <b>Módulo</b>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        <center>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                            <!---@Html.ActionLink("Detalles", "Details", new { id = item.id }) -->
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                        </center>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="panel-heading">
+            <a align="right" class="btn btn-success" href="/Fichas/Index">
+                <i class="fa fa-list"> Generar ficha para el módulo</i>
+            </a>
+        </div>
+    </div>
+</div>

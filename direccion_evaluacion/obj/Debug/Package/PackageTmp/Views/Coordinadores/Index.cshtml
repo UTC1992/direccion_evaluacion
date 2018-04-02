@@ -1,0 +1,168 @@
+﻿@model IEnumerable<direccion_evaluacion.Models.Usuario>
+
+@{
+    ViewBag.Title = "Coordinadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+  $('#coordinador').addClass('active');
+</script>
+
+@if (ViewBag.AccionOk != "")
+{
+    <script>
+      swal("Confirmación!","@ViewBag.AccionOk","success")
+    </script>
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+        <center>
+            <h2> <i class="fa fa-user"></i><b>Administrar Coordinador</b></h2>
+        </center>
+
+    </nav>
+</div>
+<div class="container">
+<br>
+    <div class="panel panel-default">
+        <div class="panel-heading"> <a align="right" class="btn btn-primary" href="/Coordinadores/Create">
+            <i class="fa fa-list"> Nuevo Coordinador</i></a></div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                @if (Model != null)
+                {
+                    <table class="table table-bordered table-hover tabladireccion">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Cedula</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                       
+                        <tbody>
+                            @{ 
+                                int i = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.apellido</td>
+                                    <td>@item.nombre</td>
+                                    <td>@item.email</td>
+                                    <td>@item.cedula</td>
+                                    <td>@item.telefono</td>
+                                    <td>@item.direccion</td>
+                                    <td>
+                                        @if (item.estado == 1)
+                                        {
+                                            <p class="btn btn-primary" align="Center">Activo</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="btn btn-danger">Inactivo</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a class="btn btn-primary" href="/Coordinadores/Editar/@item.id">
+                                                 <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a class="btn btn-danger btn-circle eliminar" href="/Coordinadores/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Coordinador</b>" data-placement="bottom">
+                                                <i class="fa fa-trash-o"> </i>
+                                            </a>
+                                        </center>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        <b>No se encontraton Directores</b>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+      $(".eliminar").click(function(e) {
+
+            var url = this.href;
+            e.preventDefault()
+            swal({
+              title : "Confirmación",
+              text : "¿Está seguro de querer eliminar el Registro ?",
+              type : "error",
+              showCancelButton : true,
+              confirmButtonColor : '#3085d6',
+              cancelButtonColor : '#d33',
+              confirmButtonText : 'Si',
+              cancelButtonText : 'No',
+            }, function(isConfirm) {
+              if (isConfirm) {
+                //window.location="logut page url"; // if you need redirect page
+
+                $(location).attr('href', url);
+
+              } else {
+                //alert("Cancelled");
+              }
+            })
+          });
+$('.tabladireccion').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+        language:{
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+
+
+        "scrollCollapse": true,
+        "paging":         true
+    } );
+</script>

@@ -15,15 +15,33 @@ namespace direccion_evaluacion.Controllers
         // GET: Docentes
         public ActionResult Index(string mensaje = "")
         {
+            if (Session["usuario"] != null)
+            {
+                if (Session["usuario"].ToString() == "Coordinador")
+                {
+                    ViewBag.AccionOk = mensaje;
 
-            ViewBag.AccionOk = mensaje;
+                    //consulta de usuarios con perfil de coordinador
+                    var usuariosList = from Usuario in db.Usuarios
+                                       where Usuario.Perfil.nombre == "Docente"
+                                       select Usuario;
+                    var docenteModList = from ModuloDocente in db.ModuloDocentes
+                                         select ModuloDocente;
 
-            //consulta de usuarios con perfil de coordinador
-            var usuariosList = from Usuario in db.Usuarios
-                               where Usuario.Perfil.id == 3
-                               select Usuario;
+                    Modelos modelos = new Modelos();
+                    modelos.ObjUsuario = usuariosList;
+                    modelos.ObjModuloD = docenteModList;
 
-            return View(usuariosList.ToList());
+                    return View(modelos);
+                }
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
+
+
         }
 
         // GET: Docentes/Details/5
@@ -35,7 +53,19 @@ namespace direccion_evaluacion.Controllers
         // GET: Docentes/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["usuario"] != null)
+            {
+                if (Session["usuario"].ToString() == "Coordinador")
+                {
+                    return View();
+                }
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
+            
         }
 
         // POST: Docentes/Create
@@ -43,10 +73,10 @@ namespace direccion_evaluacion.Controllers
         public ActionResult Create(string nombre = "",
             string apellido = "", string cedula = "", string email = "",
             string telefono = "", string direccion = "", string password = "",
-            int estado = 0, int perfil = 0)
+            int estado = 0)
         {
             //se busca el objeto perfil que va a utilizarce como clave foranea
-            var perfilUsu = db.Perfiles.SingleOrDefault(x => x.id == perfil);
+            var perfilUsu = db.Perfiles.SingleOrDefault(x => x.nombre == "Docente");
 
             try
             {
@@ -80,8 +110,20 @@ namespace direccion_evaluacion.Controllers
         // GET: Docentes/Edit/5
         public ActionResult Editar(int id)
         {
-            var usu = db.Usuarios.Find(id);
-            return View(usu);
+            if (Session["usuario"] != null)
+            {
+                if (Session["usuario"].ToString() == "Coordinador")
+                {
+                    var usu = db.Usuarios.Find(id);
+                    return View(usu);
+                }
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
+            
         }
 
         // POST: Docentes/Edit/5
@@ -132,6 +174,13 @@ namespace direccion_evaluacion.Controllers
         {
             try
             {
+                ModuloDocente md = db.ModuloDocentes.FirstOrDefault(x => x.Docente.id == id);
+                if (md != null)
+                {
+                    db.ModuloDocentes.Remove(md);
+                    db.SaveChanges();
+                }
+
                 Usuario usuario = db.Usuarios.Find(id);
                 db.Usuarios.Remove(usuario);
                 db.SaveChanges();
@@ -181,8 +230,9 @@ namespace direccion_evaluacion.Controllers
         [HttpPost]
         public JsonResult validarEmailPorId(int id = 0, string email = "")
         {
-            var usuario = db.Usuarios.Find(id);
-            if (usuario.email == email)
+            var usuarioId = db.Usuarios.Find(id);
+            var usuarioEmail = db.Usuarios.SingleOrDefault(x => x.email == email);
+            if (usuarioEmail == null || usuarioId.email == email)
             {
                 bool existe = true;
                 return Json(existe);
@@ -197,15 +247,36 @@ namespace direccion_evaluacion.Controllers
         //mostrar coordinadores a los que se les envia las fichas asignadas
         public ActionResult Coordinadores(string mensaje = "")
         {
+            if(Session["usuario"] != null && Session["usuario"].ToString() == "Docente" )
+            {
+                ViewBag.AccionOk = mensaje;
 
-            ViewBag.AccionOk = mensaje;
+                //consulta de usuarios con perfil de coordinador
+                var usuariosList = from Usuario in db.Usuarios
+                                   where Usuario.Perfil.nombre == "Coordinador"
+                                   select Usuario;
+                var mdList = from ModuloDocente in db.ModuloDocentes
+                                   select ModuloDocente;
+                var moduloList = from Modulo in db.Modulos
+                                   select Modulo;
+                var fichaList = from Ficha in db.Fichas
+                                   select Ficha;
 
-            //consulta de usuarios con perfil de coordinador
-            var usuariosList = from Usuario in db.Usuarios
-                               where Usuario.Perfil.id == 2
-                               select Usuario;
+                Modelos modelos = new Modelos();
+                modelos.ObjUsuario = usuariosList;
+                modelos.ObjModuloD = mdList;
+                modelos.ObjModulo = moduloList;
+                modelos.ObjFicha = fichaList;
 
-            return View(usuariosList.ToList());
+
+                return View(modelos);
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
+            
         }
+
     }
 }

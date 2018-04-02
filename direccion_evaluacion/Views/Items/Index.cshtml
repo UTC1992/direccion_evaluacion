@@ -1,0 +1,78 @@
+﻿@model IEnumerable<direccion_evaluacion.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+     <br />
+        <br />
+
+    </nav>
+</div>
+
+
+<div class="container">
+
+    <br />
+    <center>
+        <h2> <i class="fa fa-user"> </i> <b>Administrar Items</b></h2>
+    </center>
+
+    <br />
+    <div class="panel-heading">
+        <table class="table">
+            <tr>
+                <td>
+                    <a align="right" class="btn btn-primary" href="/Items/Create">
+                        <i class="fa fa-list"> Nuevo Item</i>
+                    </a>
+                </td>
+
+                <td class="text-right">
+                    <a class="btn btn-danger" href="/Subtitulos/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span> Regresar</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    <b>Item</b>
+                </th>
+                <th>
+                    <b>Subtitulo</b>
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width: 400px;">
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td style="width: 400px;">
+                        @Html.DisplayFor(modelItem => item.Subtitulo.nombre)
+                    </td>
+
+                    <td>
+                        <center>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                            <!---  @Html.ActionLink("Details", "Details", new { id=item.id }) -->
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                        </center>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

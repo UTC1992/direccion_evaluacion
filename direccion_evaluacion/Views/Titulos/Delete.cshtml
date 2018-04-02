@@ -1,0 +1,65 @@
+﻿@model direccion_evaluacion.Models.Titulo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <nav class="navbar-inverse">
+        <br />
+        <br />
+       
+    </nav>
+</div>
+
+
+<div class="container">
+    <br />
+    <center>
+        <h2> <i class="fa fa-user"> </i> <b>Eliminar Titulo</b></h2>
+    </center>
+    <br />
+
+
+    <h3>¿Esta seguro que desea eliminar este titulo?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <b>Nombre</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+            <dt>
+                <b># Ficha</b>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ficha.nombre)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10">
+                        <input type="submit" value="Eliminar" class="btn btn-success" />
+                    </div>
+                    <br /><br />
+                    <div class="col-md-offset-1 col-md-10">
+                        @Html.ActionLink("Regresar a titulos", "Index", null, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+    
+</div>

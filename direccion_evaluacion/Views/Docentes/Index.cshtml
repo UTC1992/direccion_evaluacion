@@ -1,4 +1,4 @@
-﻿@model IEnumerable<direccion_evaluacion.Models.Usuario>
+﻿@model direccion_evaluacion.Models.Modelos
 
 @{
     ViewBag.Title = "Docentes";
@@ -17,17 +17,19 @@
     </script>
 }
 
+
 <div class="row">
     <nav class="navbar-inverse">
-
-        <center>
-            <h2> <i class="fa fa-user"> </i> <b>Administración de Docentes </b></h2>
-        </center>
-
+        <br />
+        <br />
     </nav>
 </div>
 <div class="container">
-    <h3>Administración de Docentes</h3>
+    <br />
+    <center>
+        <h2> <i class="fa fa-user"> </i> <b>Administrar Docente </b></h2>
+    </center>
+    <br>
     <div class="panel panel-default">
         <div class="panel-heading">
             <a align="right" class="btn btn-primary" href="/Docentes/Create">
@@ -36,7 +38,7 @@
         </div>
         <div class="panel-body">
             <div class="table-responsive">
-                @if (Model != null)
+                @if (Model.ObjUsuario != null)
                 {
                     <table class="table table-bordered table-hover tabladireccion">
                         <thead>
@@ -49,32 +51,18 @@
                                 <th>Teléfono</th>
                                 <th>Dirección</th>
                                 <th>Estado</th>
-                                <th>Archivo</th>
-                                <th>Equivalencia</th>
+                                <th>Asignar/Módulo</th>
+                                <th>Calificación</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Apellido</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Cedula</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Estado</th>
-                                <th>Archivo</th>
-                                <th>Equivalencia</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </tfoot>
+                       
                         <tbody>
                             @{
                                 int docu = 1;
                                 int i = 0;
                             }
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.ObjUsuario)
                             {
                                 i++;
                                 <tr>
@@ -88,24 +76,52 @@
                                     <td>
                                         @if (item.estado == 1)
                                         {
-                                            <p class="bg-primary" align="Center">Activo</p>
+                                            <p class="btn btn-primary" align="Center">Activo</p>
                                         }
                                         else
                                         {
-                                            <p class="bg-danger">Inactivo</p>
+                                            <p class="btn btn-danger">Inactivo</p>
                                         }
                                     </td>
+                                    
                                     <td>
-                                        <a class="btn btn-info" href="/Respuestas/subirInformacionRespuesta/@item.id/@docu"><i class="fa fa-list"></i>Asignar Ficha N° 1</a>
+                                        @{
+                                            int contador = 0;
+                                         }
+                                        @foreach (var md in Model.ObjModuloD)
+                                        {
+                                            if (contador < 1)
+                                            {
+                                                if (md.Docente.id == item.id)
+                                                {
+                                                    <center>
+                                                        <a class="btn btn-success" href="/ModuloDocentes/Edit/@md.id">Editar</a>
+                                                    </center>
+                                                    contador++;
+                                                }
+
+                                            }
+                                        }
+                                        @if (contador == 0)
+                                        {
+                                            <center>
+                                                <a class="btn btn-info" href="/ModuloDocentes/Create?id=@item.id">Asignar</a>
+                                            </center>
+                                        }
+                                            
                                     </td>
                                     <td>
-                                        <center> <b class="calificacion" name="calificacion" id="calificacion-@item.id" ></b> </center>
+                                        <center>
+                                            <input type="text" placeholder="0.0" />
+                                        </center>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="/Docentes/Editar/@item.id"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-danger btn-circle eliminar" href="/Docentes/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Docente</b>" data-placement="bottom">
-                                            <i class="fa fa-trash-o"> </i>
-                                        </a>
+                                        <center>
+                                            <a class="btn btn-primary" href="/Docentes/Editar/@item.id"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-danger btn-circle eliminar" href="/Docentes/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Docente</b>" data-placement="bottom">
+                                                <i class="fa fa-trash-o"> </i>
+                                            </a>
+                                        </center>
                                     </td>
                                 </tr>
 

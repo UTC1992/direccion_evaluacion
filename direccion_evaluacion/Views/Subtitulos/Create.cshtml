@@ -1,0 +1,66 @@
+﻿@model direccion_evaluacion.Models.Modelos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <nav class="navbar-inverse">
+
+      <br />
+        <br />
+
+    </nav>
+</div>
+<div class="container">
+    <br />
+    <center>
+        <h2> <i class="fa fa-user"> </i> <b>Nuevo Subtitulo</b></h2>
+    </center>
+    <br />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subtitulo.nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("nombre", new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.Subtitulo.nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subtitulo.Titulo, "Titulo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="tituloId">
+                        <option>- - Seleccione el Titulo - -</option>
+                        @foreach (var item in Model.ObjTitulo)
+                        {
+                            <option value="@item.id">@item.nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="btn btn-success" />
+                </div>
+                <br /><br />
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Regresar a subtitulos", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

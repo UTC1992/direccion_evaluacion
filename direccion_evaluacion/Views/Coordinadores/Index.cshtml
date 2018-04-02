@@ -12,102 +12,99 @@
 @if (ViewBag.AccionOk != "")
 {
     <script>
-      swal("Confirmación!", "@ViewBag.AccionOk", "success")
+      swal("Confirmación!","@ViewBag.AccionOk","success")
     </script>
 }
 
 <div class="row">
     <nav class="navbar-inverse">
-
-        <center>
-            <h2> <i class="fa fa-user"> </i> <b>Administración de Coordinadores</b></h2>
-        </center>
-
+        <br />
+        <br />
     </nav>
 </div>
 <div class="container">
-    <h3>Administración de Coordinadores</h3>
-    <div class="panel panel-default">
-        <div class="panel-heading"> <a align="right" class="btn btn-primary" href="/Coordinadores/Create">
-            <i class="fa fa-list"> Nuevo Coordinador</i></a></div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                @if (Model != null)
-                {
-                    <table class="table table-bordered table-hover tabladireccion">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Apellido</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Cedula</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Estado</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Apellido</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Cedula</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Estado</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @{ 
-                                int i = 0;
-                            }
-                            @foreach (var item in Model)
-                            {
-                                i++;
+        <br />
+        <center>
+            <h2> <i class="fa fa-user"> </i> <b>Administrar Coordinador </b></h2>
+        </center>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a align="right" class="btn btn-primary" href="/Coordinadores/Create">
+                    <i class="fa fa-list"> Nuevo Coordinador</i>
+                </a>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    @if (Model != null)
+                    {
+                        <table class="table table-bordered table-hover tabladireccion">
+                            <thead>
                                 <tr>
-                                    <td>@i</td>
-                                    <td>@item.apellido</td>
-                                    <td>@item.nombre</td>
-                                    <td>@item.email</td>
-                                    <td>@item.cedula</td>
-                                    <td>@item.telefono</td>
-                                    <td>@item.direccion</td>
-                                    <td>
-                                        @if (item.estado == 1)
-                                        {
-                                            <p class="bg-primary" align="Center">Activo</p>
-                                        }
-                                        else
-                                        {
-                                            <p class="bg-danger">Inactivo</p>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" href="/Coordinadores/Editar/@item.id"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-danger btn-circle eliminar" href="/Coordinadores/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Coordinador</b>" data-placement="bottom">
-                                        <i class="fa fa-trash-o"> </i></a>
-                                    </td>
+                                    <th>#</th>
+                                    <th>Apellido</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Cedula</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Estado</th>
+                                    <th>Opciones</th>
                                 </tr>
-                            }
-                        </tbody>
+                            </thead>
 
-                    </table>
-                }
-                else
-                {
-                    <div class="alert alert-danger">
-                        <b>No se encontraton Directores</b>
-                    </div>
-                }
+                            <tbody>
+                                @{
+                                    int i = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.apellido</td>
+                                        <td>@item.nombre</td>
+                                        <td>@item.email</td>
+                                        <td>@item.cedula</td>
+                                        <td>@item.telefono</td>
+                                        <td>@item.direccion</td>
+                                        <td>
+                                            @if (item.estado == 1)
+                                            {
+                                                <p class="btn btn-primary" align="Center">Activo</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="btn btn-danger">Inactivo</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <center>
+                                                <a class="btn btn-primary" href="/Coordinadores/Editar/@item.id">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a class="btn btn-danger btn-circle eliminar" href="/Coordinadores/Delete/@item.id" data-toggle="popover" data-html="true" data-content="<b>Eliminar Coordinador</b>" data-placement="bottom">
+                                                    <i class="fa fa-trash-o"> </i>
+                                                </a>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
 
+                        </table>
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger">
+                                            <b>No se encontraton Directores</b>
+                                        </div>
+                                    }
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <script type="text/javascript">
 

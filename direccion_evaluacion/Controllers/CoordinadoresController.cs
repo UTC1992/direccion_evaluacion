@@ -16,14 +16,25 @@ namespace direccion_evaluacion.Controllers
         public ActionResult Index(string mensaje = "")
         {
 
-            ViewBag.AccionOk = mensaje;
+            if (Session["usuario"] != null)
+            {
+                if (Session["usuario"].ToString() == "Administrador")
+                {
+                    ViewBag.AccionOk = mensaje;
 
-            //consulta de usuarios con perfil de coordinador
-            var usuariosList = from Usuario in db.Usuarios
-                               where Usuario.Perfil.id == 2
-                               select Usuario;
+                    //consulta de usuarios con perfil de coordinador
+                    var usuariosList = from Usuario in db.Usuarios
+                                       where Usuario.Perfil.nombre == "Coordinador"
+                                       select Usuario;
 
-            return View(usuariosList.ToList());
+                    return View(usuariosList.ToList());
+                }
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
         }
 
         // GET: Coordinadores/Create
@@ -40,7 +51,7 @@ namespace direccion_evaluacion.Controllers
             int estado = 0, int perfil = 0)
         {
             //se busca el objeto perfil que va a utilizarce como clave foranea
-            var perfilUsu = db.Perfiles.SingleOrDefault(x => x.id == perfil);
+            var perfilUsu = db.Perfiles.SingleOrDefault(x => x.nombre == "Coordinador");
 
             try
             {
@@ -74,8 +85,20 @@ namespace direccion_evaluacion.Controllers
         // GET: Coordinadores/Edit/5
         public ActionResult Editar(int id)
         {
-            var usu = db.Usuarios.Find(id);
-            return View(usu);
+            if (Session["usuario"] != null)
+            {
+                if (Session["usuario"].ToString() == "Administrador")
+                {
+                    var usu = db.Usuarios.Find(id);
+                    return View(usu);
+                }
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/Home");
+            }
+            
         }
 
         // POST: Coordinadores/Edit/5
@@ -175,8 +198,9 @@ namespace direccion_evaluacion.Controllers
         [HttpPost]
         public JsonResult validarEmailPorId(int id = 0, string email = "")
         {
-            var usuario = db.Usuarios.Find(id);
-            if (usuario.email == email)
+            var usuarioId = db.Usuarios.Find(id);
+            var usuarioEmail = db.Usuarios.SingleOrDefault(x => x.email == email);
+            if (usuarioEmail == null || usuarioId.email == email)
             {
                 bool existe = true;
                 return Json(existe);
