@@ -23,5 +23,7 @@ namespace direccion_evaluacion.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<Archivo> Archivos { get; set; }
         public DbSet<ModuloDocente> ModuloDocentes { get; set; }
+        public DbSet<Subcriterio> Subcriterios { get; set; }
+        public DbSet<FichaAux> FichaAuxes { get; set; }
     }
 }

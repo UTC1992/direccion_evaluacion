@@ -17,6 +17,9 @@ namespace direccion_evaluacion.Models
         public Item Item { get; set; }
         public Usuario Usuario { get; set; }
         public ModuloDocente ModuloDocente { get; set; }
+        public Subcriterio Subcriterio { get; set; }
+        public FichaAux FichaAux { get; set; }
+
         public IEnumerable<Modulo> ObjModulo { get; set; }
         public IEnumerable<Ficha> ObjFicha { get; set; }
         public IEnumerable<Titulo> ObjTitulo { get; set; }
@@ -25,6 +28,8 @@ namespace direccion_evaluacion.Models
         public IEnumerable<Archivo> ObjArchivo{ get; set; }
         public IEnumerable<Usuario> ObjUsuario { get; set; }
         public IEnumerable<ModuloDocente> ObjModuloD { get; set; }
+        public IEnumerable<Subcriterio> ObjSubcriterio { get; set; }
+        public IEnumerable<FichaAux> ObjFichaAux { get; set; }
 
     }
 }

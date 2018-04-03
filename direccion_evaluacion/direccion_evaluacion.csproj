@@ -168,6 +168,7 @@
     <Compile Include="Controllers\CoordinadoresController.cs" />
     <Compile Include="Controllers\DeleteFile.cs" />
     <Compile Include="Controllers\DocentesController.cs" />
+    <Compile Include="Controllers\FichaAuxesController.cs" />
     <Compile Include="Controllers\FichasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Controllers\ModuloDocentesController.cs" />
     <Compile Include="Controllers\ModulosController.cs" />
     <Compile Include="Controllers\MostrarFichasController.cs" />
+    <Compile Include="Controllers\SubcriteriosController.cs" />
     <Compile Include="Controllers\SubirArchivosController.cs" />
     <Compile Include="Controllers\SubtitulosController.cs" />
     <Compile Include="Controllers\TitulosController.cs" />
@@ -188,11 +190,13 @@
     <Compile Include="Models\Archivo.cs" />
     <Compile Include="Models\EvaluacionDBContext.cs" />
     <Compile Include="Models\Ficha.cs" />
+    <Compile Include="Models\FichaAux.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Modelos.cs" />
     <Compile Include="Models\Modulo.cs" />
     <Compile Include="Models\ModuloDocente.cs" />
     <Compile Include="Models\Perfil.cs" />
+    <Compile Include="Models\Subcriterio.cs" />
     <Compile Include="Models\SubirArchivosModelo.cs" />
     <Compile Include="Models\Subtitulo.cs" />
     <Compile Include="Models\Titulo.cs" />
@@ -580,6 +584,16 @@
     <Content Include="Scripts\js\datatables.net-bs\Readme.md" />
     <Content Include="Scripts\js\DataTables\Buttons-1.2.4\css\common.scss" />
     <Content Include="Scripts\js\DataTables\Buttons-1.2.4\css\mixins.scss" />
+    <Content Include="Views\Subcriterios\Create.cshtml" />
+    <Content Include="Views\Subcriterios\Delete.cshtml" />
+    <Content Include="Views\Subcriterios\Details.cshtml" />
+    <Content Include="Views\Subcriterios\Edit.cshtml" />
+    <Content Include="Views\Subcriterios\Index.cshtml" />
+    <Content Include="Views\FichaAuxes\Create.cshtml" />
+    <Content Include="Views\FichaAuxes\Delete.cshtml" />
+    <Content Include="Views\FichaAuxes\Details.cshtml" />
+    <Content Include="Views\FichaAuxes\Edit.cshtml" />
+    <Content Include="Views\FichaAuxes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
